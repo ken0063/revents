@@ -1,11 +1,18 @@
 import React, { Fragment } from 'react';
 import { EventListItem } from '../..';
 
-const EventList = ({ events }) => {
+const EventList = ({ events, selectEvents, deleteEvents }) => {
   return (
     <Fragment>
       {events &&
-        events.map((items) => <EventListItem event={items} key={items.id} />)}
+        events.map((items) => (
+          <EventListItem
+            eventItems={items}
+            key={items.id}
+            selectEvents={selectEvents}
+            deleteEvent={deleteEvents}
+          />
+        ))}
     </Fragment>
   );
 };

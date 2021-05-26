@@ -2,21 +2,21 @@ import React from 'react';
 import { Button, Icon, Item, List, Segment } from 'semantic-ui-react';
 import { EventListAttendee } from '../..';
 
-const EventListItem = (items) => {
+const EventListItem = ({ eventItems, selectEvents, deleteEvent }) => {
   return (
     <Segment.Group>
       <Segment>
         <Item.Group>
           <Item>
             <Item.Image
-              src={items.event && items.event.hostPhotoURL}
+              src={eventItems && eventItems.hostPhotoURL}
               size="tiny"
               circular
             />
             <Item.Content>
-              <Item.Header content={items.event && items.event.title} />
+              <Item.Header content={eventItems && eventItems.title} />
               <Item.Description>
-                Hosted by {items.event && items.event.hostedBy}
+                Hosted by {eventItems && eventItems.hostedBy}
               </Item.Description>
             </Item.Content>
           </Item>
@@ -25,21 +25,36 @@ const EventListItem = (items) => {
       <Segment>
         <span>
           <Icon name="clock" />
-          {items.event && items.event.date}
+          {eventItems && eventItems.date}
           <Icon name="marker" className="icon-space" />
-          {items.event && items.event.venue}
+          {eventItems && eventItems.venue}
         </span>
       </Segment>
       <Segment secondary>
         <List horizontal>
-          <EventListAttendee attendees={items.event.attendees} />
+          {eventItems &&
+            eventItems.attendees.map((attendee) => (
+              <EventListAttendee attendee={attendee} key={attendee.id} />
+            ))}
         </List>
       </Segment>
       <Segment clearing>
         <div className="description-text">
-          {items.event && items.event.description}
+          {eventItems && eventItems.description}
         </div>
-        <Button color="teal" floated="right" content="View" />
+        <Button
+          color="teal"
+          floated="right"
+          content="View"
+          onClick={() => selectEvents(eventItems)}
+        />
+        <Button
+          color="red"
+          floated="left"
+          content="Delete"
+          onClick={() => deleteEvent(eventItems.id)}
+        />
+        {console.log(eventItems.id)}
       </Segment>
     </Segment.Group>
   );
