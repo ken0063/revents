@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button, Icon, Item, List, Segment } from 'semantic-ui-react';
 import { EventListAttendee } from '../..';
 
@@ -46,7 +47,8 @@ const EventListItem = ({ eventItems, selectEvents, deleteEvent }) => {
           color="teal"
           floated="right"
           content="View"
-          onClick={() => selectEvents(eventItems)}
+          as={Link}
+          to={`/events/${eventItems.id}`}
         />
         <Button
           color="red"
