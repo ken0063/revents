@@ -1,5 +1,5 @@
 /* eslint-disable no-unreachable */
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import {
   EventDashboard,
   EventDetailsPage,
@@ -8,7 +8,7 @@ import {
 } from '../../features/index';
 import 'semantic-ui-css/semantic.min.css';
 import { Container } from 'semantic-ui-react';
-import { Route, useHistory } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import { HomePage } from '../../home';
 
 const App = () => {
