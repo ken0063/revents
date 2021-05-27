@@ -11,19 +11,19 @@ const SignedInMenu = ({ handleSignedOut }) => {
         <Dropdown.Menu>
           <Dropdown.Item
             as={Link}
-            to="/createEvents"
+            to="/create-events"
             text="Create Event"
             icon="plus"
           />
           <Dropdown.Item
             // as={Link}
-            // to="/createEvents"
+            // to="/create-events"
             text="My Profile"
             icon="user"
           />
           <Dropdown.Item
             // as={Link}
-            // to="/createEvents"
+            // to="/create-events"
             text="Sign Out"
             icon="power"
             onClick={(e) => handleSignedOut(e)}

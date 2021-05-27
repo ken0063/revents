@@ -25,8 +25,9 @@ const NavBar = () => {
           to="/events"
           style={{ marginLeft: '50px' }}
         />
+        <Menu.Item name="Sandbox" as={NavLink} to="/sand-box" />
         {auth && (
-          <Menu.Item as={NavLink} to="/createEvents">
+          <Menu.Item as={NavLink} to="/create-events">
             <Button positive content="Create Event" inverted />
           </Menu.Item>
         )}

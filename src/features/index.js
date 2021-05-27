@@ -11,6 +11,7 @@ import EventDetailChat from './events/eventDetails/EventDetailChat';
 import NavBar from './nav/NavBar';
 import SignedInMenu from './nav/SignedInMenu';
 import SignedOutMenu from './nav/SignedOutMenu';
+import SandBox from './sandBox/SandBox';
 
 export {
   EventDashboard,
@@ -26,4 +27,5 @@ export {
   EventDetailsInfo,
   EventDetailsHeader,
   EventDetailChat,
+  SandBox,
 };

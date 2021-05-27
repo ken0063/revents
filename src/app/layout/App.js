@@ -1,17 +1,18 @@
-/* eslint-disable no-unreachable */
 import React, { Fragment } from 'react';
 import {
   EventDashboard,
   EventDetailsPage,
   EventForm,
   NavBar,
+  SandBox,
 } from '../../features/index';
 import 'semantic-ui-css/semantic.min.css';
 import { Container } from 'semantic-ui-react';
-import { Route } from 'react-router-dom';
+import { Route, useLocation } from 'react-router-dom';
 import { HomePage } from '../../home';
 
 const App = () => {
+  const { key } = useLocation();
   return (
     <Fragment>
       <Route path="/" component={HomePage} exact />
@@ -22,10 +23,12 @@ const App = () => {
             <NavBar />
             <Container className="main">
               <Route path="/events" component={EventDashboard} exact />
+              <Route path="/sand-box" component={SandBox} exact />
               <Route path="/events/:id" component={EventDetailsPage} />
               <Route
-                path={['/createEvents', '/manage/:id']}
+                path={['/create-events', '/manage/:id']}
                 component={EventForm}
+                key={key}
               />
             </Container>
           </Fragment>

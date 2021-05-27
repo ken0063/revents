@@ -1,7 +1,8 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Header, Image, Item, Segment } from 'semantic-ui-react';
-import drink from '../../../utils/assets/categoryImages/drinks.jpg';
+import { updateEvents } from '../EventsActions';
 
 const eventImageStyle = {
   filter: 'brightness(50%)',
@@ -16,24 +17,28 @@ const eventImageTextStyle = {
   color: 'white',
 };
 
-const EventDetailsHeader = () => {
+const EventDetailsHeader = ({ event }) => {
+  const dispatch = useDispatch();
   return (
     <Segment.Group style={{ padding: '0' }}>
       <Segment basic attached="top" style={{ padding: '0' }}>
-        <Image src={drink} fluid style={eventImageStyle} />
-
+        <Image
+          src={`/utils/assets/categoryImages/${event.category}.jpg`}
+          fluid
+          style={eventImageStyle}
+        />
         <Segment basic style={eventImageTextStyle}>
           <Item.Group>
             <Item>
               <Item.Content>
                 <Header
                   size="huge"
-                  content="Event Title"
+                  content={event.title}
                   style={{ color: 'white' }}
                 />
-                <p>Event Date</p>
+                <p> {event.date} </p>
                 <p>
-                  Hosted by <strong>Bob</strong>
+                  Hosted by <strong>{event.hostedBy}</strong>
                 </p>
               </Item.Content>
             </Item>
@@ -47,7 +52,13 @@ const EventDetailsHeader = () => {
         </Button>
         <Button color="teal">JOIN THIS EVENT</Button>
 
-        <Button color="orange" floated="right" as={Link} to={`/manage/`}>
+        <Button
+          color="orange"
+          floated="right"
+          as={Link}
+          to={`/manage/${event.id}`}
+          onClick={() => dispatch(updateEvents(event))}
+        >
           Manage Event
         </Button>
       </Segment>
