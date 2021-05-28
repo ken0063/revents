@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { Dropdown, Image, Menu } from 'semantic-ui-react';
 import { signOutUser } from '../../auth/AuthAction';
-import user from '../../utils/assets/user.png';
 
 const SignedInMenu = () => {
   const dispatch = useDispatch();
@@ -16,7 +15,7 @@ const SignedInMenu = () => {
   const { currentUser } = useSelector((state) => state.auth);
   return (
     <Menu.Item position="right">
-      <Image avatar spaced="right" src={currentUser.photoURL || user} />
+      <Image avatar spaced="right" src={currentUser.photoURL} />
       <Dropdown pointing="top left" text={currentUser.email}>
         <Dropdown.Menu>
           <Dropdown.Item

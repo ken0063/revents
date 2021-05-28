@@ -10,12 +10,9 @@ import 'semantic-ui-css/semantic.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-calendar/dist/Calendar.css';
 import './app/layout/_App.scss';
-import { loadEvents } from './features/events/EventsActions';
 
 const rootElement = document.getElementById('root');
 const store = configureStore();
-
-store.dispatch(loadEvents());
 
 function render() {
   ReactDOM.render(

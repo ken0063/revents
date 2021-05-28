@@ -1,13 +1,34 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Icon, Item, List, Segment } from 'semantic-ui-react';
+import {
+  Button,
+  Confirm,
+  Icon,
+  Item,
+  Label,
+  List,
+  Segment,
+} from 'semantic-ui-react';
 import { EventListAttendee } from '../..';
-import { deleteEvents } from '../EventsActions';
 import { format } from 'date-fns';
+import { useDispatch } from 'react-redux';
+import { deleteEventInFirestore } from '../../../app/firestore/firestoreService';
 
 const EventListItem = ({ eventItems }) => {
   const dispatch = useDispatch();
+  const [deleteLoading, setDeleteLoading] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
+
+  const handleDeleteToggle = async (eventId) => {
+    setConfirmOpen(false);
+    setDeleteLoading(true);
+    try {
+      await dispatch(deleteEventInFirestore(eventId));
+      setDeleteLoading(false);
+    } catch (error) {
+      setDeleteLoading(true);
+    }
+  };
   return (
     <Segment.Group>
       <Segment>
@@ -23,6 +44,21 @@ const EventListItem = ({ eventItems }) => {
               <Item.Description>
                 Hosted by {eventItems && eventItems.hostedBy}
               </Item.Description>
+              {eventItems.isCancelled ? (
+                <Label
+                  content="Event Cancelled"
+                  color="red"
+                  ribbon="right"
+                  style={{ top: '-40px' }}
+                />
+              ) : (
+                <Label
+                  content="Event Active"
+                  color="green"
+                  ribbon="right"
+                  style={{ top: '-40px' }}
+                />
+              )}
             </Item.Content>
           </Item>
         </Item.Group>
@@ -58,9 +94,17 @@ const EventListItem = ({ eventItems }) => {
           color="red"
           floated="left"
           content="Delete"
-          onClick={() => dispatch(deleteEvents(eventItems.id))}
+          onClick={() => setConfirmOpen(true)}
+          type="button"
+          loading={deleteLoading}
         />
       </Segment>
+      <Confirm
+        content="Are you sure you want to delete this event?"
+        open={confirmOpen}
+        onCancel={() => setConfirmOpen(false)}
+        onConfirm={() => handleDeleteToggle(eventItems.id)}
+      />
     </Segment.Group>
   );
 };

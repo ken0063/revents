@@ -1,6 +1,5 @@
 import React from 'react';
 import { Segment, Item } from 'semantic-ui-react';
-import user from '../../../utils/assets/user.png';
 
 const EventDetailsSideBar = ({ attendees }) => {
   return (
@@ -21,7 +20,7 @@ const EventDetailsSideBar = ({ attendees }) => {
           {attendees &&
             attendees.map((attendee) => (
               <Item style={{ position: 'relative' }} key={attendee.id}>
-                <Item.Image size="tiny" src={attendee.photoURL || user} />
+                <Item.Image size="tiny" src={attendee.photoURL} />
                 <Item.Content verticalAlign="middle">
                   <Item.Header as="h3">
                     <span>{attendee.displayName}</span>
