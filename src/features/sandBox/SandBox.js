@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Button } from 'semantic-ui-react';
+import { openModal } from '../../component/modal/ModalReducer';
 import { decrease, increase } from './testReducer';
 
 const SandBox = () => {
@@ -20,6 +21,12 @@ const SandBox = () => {
         content="Remove"
         onClick={() => dispatch(decrease(1))}
         color="red"
+      />
+      <Button
+        content="Open Modal"
+        onClick={() =>
+          dispatch(openModal({ modalType: 'TestModal', modalProps: { data } }))
+        }
       />
     </Fragment>
   );

@@ -1,13 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useHistory } from 'react-router-dom';
 import { Dropdown, Image, Menu } from 'semantic-ui-react';
+import { signOutUser } from '../../auth/AuthAction';
 import user from '../../utils/assets/user.png';
 
-const SignedInMenu = ({ handleSignedOut }) => {
+const SignedInMenu = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const handleSignOut = () => {
+    dispatch(signOutUser());
+    history.push('/');
+  };
+
+  const { currentUser } = useSelector((state) => state.auth);
   return (
     <Menu.Item position="right">
-      <Image avatar spaced="right" src={user} />
-      <Dropdown pointing="top left" text="ken">
+      <Image avatar spaced="right" src={currentUser.photoURL || user} />
+      <Dropdown pointing="top left" text={currentUser.email}>
         <Dropdown.Menu>
           <Dropdown.Item
             as={Link}
@@ -26,7 +36,7 @@ const SignedInMenu = ({ handleSignedOut }) => {
             // to="/create-events"
             text="Sign Out"
             icon="power"
-            onClick={(e) => handleSignedOut(e)}
+            onClick={handleSignOut}
           />
         </Dropdown.Menu>
       </Dropdown>

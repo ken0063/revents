@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Button, Header, Image, Item, Segment } from 'semantic-ui-react';
 import { updateEvents } from '../EventsActions';
+import { format } from 'date-fns';
 
 const eventImageStyle = {
   filter: 'brightness(50%)',
@@ -23,7 +24,7 @@ const EventDetailsHeader = ({ event }) => {
     <Segment.Group style={{ padding: '0' }}>
       <Segment basic attached="top" style={{ padding: '0' }}>
         <Image
-          src={`/utils/assets/categoryImages/${event.category}.jpg`}
+          src={`/utils/assets/categoryImages/${event && event.category}.jpg`}
           fluid
           style={eventImageStyle}
         />
@@ -33,12 +34,12 @@ const EventDetailsHeader = ({ event }) => {
               <Item.Content>
                 <Header
                   size="huge"
-                  content={event.title}
+                  content={event && event.title}
                   style={{ color: 'white' }}
                 />
-                <p> {event.date} </p>
+                <p> {format(event && event.date, 'MMMM d, yyyyy h:mm a')} </p>
                 <p>
-                  Hosted by <strong>{event.hostedBy}</strong>
+                  Hosted by <strong>{event && event.hostedBy}</strong>
                 </p>
               </Item.Content>
             </Item>
@@ -56,7 +57,7 @@ const EventDetailsHeader = ({ event }) => {
           color="orange"
           floated="right"
           as={Link}
-          to={`/manage/${event.id}`}
+          to={`/manage/${event && event.id}`}
           onClick={() => dispatch(updateEvents(event))}
         >
           Manage Event

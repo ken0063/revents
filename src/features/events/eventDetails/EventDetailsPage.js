@@ -16,7 +16,7 @@ const EventDetailsPage = ({ match }) => {
   return (
     <Grid>
       <Grid.Column width={4}>
-        <EventDetailsSideBar attendees={event.attendees} />
+        <EventDetailsSideBar attendees={event && event.attendees} />
       </Grid.Column>
       <Grid.Column width={12}>
         <EventDetailsHeader event={event} />

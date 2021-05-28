@@ -13,20 +13,22 @@ const EventDetailsSideBar = ({ attendees }) => {
         inverted
         color="teal"
       >
-        {attendees.length} {attendees.length > 1 ? 'People' : 'Person'} Going
+        {attendees && attendees.length}{' '}
+        {attendees && attendees.length > 1 ? 'People' : 'Person'} Going
       </Segment>
       <Segment attached>
         <Item.Group relaxed divided>
-          {attendees.map((attendee) => (
-            <Item style={{ position: 'relative' }} key={attendee.id}>
-              <Item.Image size="tiny" src={attendee.photoURL || user} />
-              <Item.Content verticalAlign="middle">
-                <Item.Header as="h3">
-                  <span>{attendee.displayName}</span>
-                </Item.Header>
-              </Item.Content>
-            </Item>
-          ))}
+          {attendees &&
+            attendees.map((attendee) => (
+              <Item style={{ position: 'relative' }} key={attendee.id}>
+                <Item.Image size="tiny" src={attendee.photoURL || user} />
+                <Item.Content verticalAlign="middle">
+                  <Item.Header as="h3">
+                    <span>{attendee.displayName}</span>
+                  </Item.Header>
+                </Item.Content>
+              </Item>
+            ))}
         </Item.Group>
       </Segment>
     </Segment.Group>

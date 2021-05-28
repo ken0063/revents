@@ -39,3 +39,12 @@ body {
 .homepage h1.ui.header {
   font-size: 45px;
 }
+
+.ui.form {
+  span {
+    display: flex;
+    padding: 10px;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+}

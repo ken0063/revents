@@ -12,6 +12,7 @@ import NavBar from './nav/NavBar';
 import SignedInMenu from './nav/SignedInMenu';
 import SignedOutMenu from './nav/SignedOutMenu';
 import SandBox from './sandBox/SandBox';
+import TestModal from './sandBox/TestModal';
 
 export {
   EventDashboard,
@@ -28,4 +29,5 @@ export {
   EventDetailsHeader,
   EventDetailChat,
   SandBox,
+  TestModal,
 };
