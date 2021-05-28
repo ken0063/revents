@@ -2,6 +2,8 @@ import EventDashboard from './events/eventDashboard/EventDashboard';
 import EventListItem from './events/eventDashboard/EventListItem';
 import EventList from './events/eventDashboard/EventList';
 import EventListAttendee from './events/eventDashboard/EventListAttendee';
+import EventPlaceholder from './events/eventDashboard/EventPlaceholder';
+import EventFilter from './events/eventDashboard/EventFilter';
 import EventForm from './events/eventForm/EventForm';
 import EventDetailsPage from './events/eventDetails/EventDetailsPage';
 import EventDetailsSideBar from './events/eventDetails/EventDetailsSideBar';
@@ -30,4 +32,6 @@ export {
   EventDetailChat,
   SandBox,
   TestModal,
+  EventPlaceholder,
+  EventFilter,
 };

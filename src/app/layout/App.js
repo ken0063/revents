@@ -6,18 +6,19 @@ import {
   NavBar,
   SandBox,
 } from '../../features/index';
-import 'semantic-ui-css/semantic.min.css';
 import { Container } from 'semantic-ui-react';
 import { Route, useLocation } from 'react-router-dom';
 import { HomePage } from '../../home';
 import ModalController from '../../component/modal/ModalController';
 import Login from '../../auth/Login';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   const { key } = useLocation();
   return (
     <Fragment>
       <ModalController />
+      <ToastContainer position="top-right" hideProgressBar />
       <Route path="/" component={HomePage} exact />
       <Route path={'/login'} component={Login} />
       <Route
