@@ -2,11 +2,8 @@ import { SIGN_IN_USER, SIGN_OUT_USER } from './AuthConst';
 import { getRandomPhotoURL } from '../utils/util';
 
 const initialState = {
-  authenticated: true,
-  currentUser: {
-    email: 'ken.test.com',
-    photoURL: getRandomPhotoURL(),
-  },
+  authenticated: false,
+  currentUser: null,
 };
 
 const AuthReducer = (state = initialState, { type, payload }) => {
@@ -17,7 +14,7 @@ const AuthReducer = (state = initialState, { type, payload }) => {
         authenticated: true,
         currentUser: {
           email: payload.email,
-          photoURL: getRandomPhotoURL(),
+          photoURL: payload.photoURL || getRandomPhotoURL(),
         },
       };
     case SIGN_OUT_USER:

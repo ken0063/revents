@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
-import Login from '../../auth/Login';
+import { Login, SignUp } from '../../auth/index';
 import { TestModal } from '../../features';
 
 const ModalController = () => {
-  const modalLookUp = { TestModal, Login };
+  const modalLookUp = { TestModal, Login, SignUp };
 
   const currentModal = useSelector((state) => state.modals);
 

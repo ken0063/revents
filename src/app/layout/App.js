@@ -13,6 +13,7 @@ import ModalController from '../../component/modal/ModalController';
 import Login from '../../auth/Login';
 import { ToastContainer } from 'react-toastify';
 import { Error } from '../../component';
+import { AccountPage, SignUp } from '../../auth';
 
 const App = () => {
   const { key } = useLocation();
@@ -22,6 +23,7 @@ const App = () => {
       <ToastContainer position="top-right" hideProgressBar />
       <Route path="/" component={HomePage} exact />
       <Route path={'/login'} component={Login} />
+      <Route path={'/sign-up'} component={SignUp} />
       <Route
         path={'/(.+)'}
         render={() => (
@@ -37,6 +39,7 @@ const App = () => {
                 key={key}
               />
               <Route path="/error" component={Error} />
+              <Route path="/account" component={AccountPage} />
             </Container>
           </Fragment>
         )}

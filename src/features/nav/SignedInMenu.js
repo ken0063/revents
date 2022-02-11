@@ -1,15 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Dropdown, Image, Menu } from 'semantic-ui-react';
-import { signOutUser } from '../../auth/AuthAction';
+import { signOutFirebase } from '../../app/firestore/firebaseService';
 
 const SignedInMenu = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
-  const handleSignOut = () => {
-    dispatch(signOutUser());
-    history.push('/');
+
+  const handleSignOut = async () => {
+    try {
+      await signOutFirebase();
+      history.push('/');
+    } catch (error) {
+      toast.error(error.message);
+    }
   };
 
   const { currentUser } = useSelector((state) => state.auth);
@@ -29,6 +34,12 @@ const SignedInMenu = () => {
             // to="/create-events"
             text="My Profile"
             icon="user"
+          />
+          <Dropdown.Item
+            as={Link}
+            to="/account"
+            text="My Account"
+            icon="settings"
           />
           <Dropdown.Item
             // as={Link}

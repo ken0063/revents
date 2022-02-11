@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Menu } from 'semantic-ui-react';
 import { openModal } from '../../component/modal/ModalReducer';
-const SignedOutMenu = ({ setAuth }) => {
+const SignedOutMenu = () => {
   const dispatch = useDispatch();
 
   return (
@@ -19,6 +19,7 @@ const SignedOutMenu = ({ setAuth }) => {
         content="Register"
         inverted
         style={{ marginLeft: '10px' }}
+        onClick={() => dispatch(openModal({ modalType: 'SignUp' }))}
       />
     </Menu.Item>
   );
